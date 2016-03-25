@@ -1,3 +1,3 @@
-# Spice-like-Simulator
-A mini simulator that performs like Hspice
+#MR 325
+My homeword @MR325
 Uhhhhh...Excited!
