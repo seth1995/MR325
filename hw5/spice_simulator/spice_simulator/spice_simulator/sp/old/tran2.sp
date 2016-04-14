@@ -1,7 +1,0 @@
-* tran1
-V1 1 0 PULSE（0 5 2NS 4Ns 4Ns 20NS 50S）
-R2 1 2 5
-C3 2 0 0.2
-L4 1 2 0.1
-.TRAN 0.001 10 0
-.END

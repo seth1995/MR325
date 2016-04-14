@@ -1,9 +1,0 @@
-**OPAMP
-V1 1 0 1 sin 0 0 10MEG 0 
-R1 1 2 10k
-C3 2 3 10n
-R2 2 3 100k
-E1 3 0 0 2 1e8
-
-.AC DEC 10 1 10k
-.END
