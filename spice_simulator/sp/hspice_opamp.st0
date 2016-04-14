@@ -1,0 +1,40 @@
+***** HSPICE -- A-2008.03 32-BIT (Feb 26 2008) winnt ******
+ Input File: c:\users\seth\documents\github\mr325\hw5\spice_simulator\spice_simu
+ lic:
+ lic: FLEXlm: v8.5b
+ lic: USER:   seth                 HOSTNAME: seth-PC
+ lic: HOSTID: "305a3a585cf3 005056c00001 005056c00008" PID:      4368
+ lic: Using FLEXlm license file:
+ lic: C:\synopsys\hspice_2008-03.lic
+ lic: Checkout 1 hspice
+ lic: License/Maintenance for hspice will expire on 31-dec-2020/2007.9
+ lic: NODE LOCKED license on hostid "305a3a585cf3 005056c00001 005056c00008"
+ lic:
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03\hspice.ini
+ init: begin read circuit files,  cpu clock=  2.26E-01
+ init: end read circuit files,  cpu clock=  2.27E-01 memory=     14 kb
+ init: begin check errors,  cpu clock=  2.27E-01
+ init: end check errors,  cpu clock=  2.28E-01 memory=     14 kb
+ init: begin setup matrix, pivot=    10 cpu clock=  2.28E-01
+       establish matrix -- done,  cpu clock=  2.29E-01 memory=     15 kb
+       re-order matrix -- done,  cpu clock=  2.29E-01 memory=     16 kb
+ init: end setup matrix,  cpu clock=  2.30E-01 memory=     25 kb
+ dcop: begin dcop,  cpu clock=  2.30E-01
+ dcop: end dcop,  cpu clock=  2.33E-01 memory=     25 kb  tot_iter=       3
+ output: c:\users\seth\documents\github\mr325\hw5\spice_simulator\spice_simulato
+ sweep: ac ac0    begin, #sweeps=  41 cpu clock=  2.35E-01
+ ac: frequency=    1.26E+00
+ ac: frequency=    2.51E+00
+ ac: frequency=    6.31E+00
+ ac: frequency=    1.58E+01
+ ac: frequency=    3.98E+01
+ ac: frequency=    1.00E+02
+ ac: frequency=    2.51E+02
+ ac: frequency=    6.31E+02
+ ac: frequency=    1.58E+03
+ ac: frequency=    3.98E+03
+ ac: frequency=    1.00E+04
+ sweep: ac ac0    end,  cpu clock=  2.53E-01 memory=     26 kb
+>info:         ***** hspice job concluded
+ Init: hspice initialization file: C:\synopsys\Hspice_A-2008.03\hspice.ini
+ lic: Release hspice token(s)

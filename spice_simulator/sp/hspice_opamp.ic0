@@ -1,0 +1,16 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03 32-BIT"
+* "format" "HSP"
+* "rundate" "10:28:33 04/14/2016 "
+* "netlist" "c:\users\seth\documents\github\mr325\hw5\spice_simulator\spice_simulator\spice_simulator\sp\hspice_opamp.sp "
+* "runtitle" "example ac analysis"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ 1 =   0.            
++ 2 =   0.            
++ 3 =   0.            
+***   END: Saved Operating Point ***                     
