@@ -1,0 +1,15 @@
+* "simulator" "HSPICE" 
+* "version" "A-2008.03 32-BIT"
+* "format" "HSP"
+* "rundate" "10:40:14 03/29/2016 "
+* "netlist" "c:\users\seth\documents\github\mr325\hw5\spice_simulator\sp\diode.sp "
+* "runtitle" "#a circuit has diode"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ 1 =   0.            
++ 2 =   0.            
+***   END: Saved Operating Point ***                     

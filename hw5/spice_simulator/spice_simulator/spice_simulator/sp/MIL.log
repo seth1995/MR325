@@ -1,0 +1,45 @@
+pnlAddPane();
+nil
+1
+designOpen("c:\\users\\seth\\documents\\github\\mr325\\hw5\\spice_simulator\\spice_simulator\\spice_simulator\\sp\\hspice_opamp.sp");
+"D0"
+t
+pnlAddCurve(1, node(D0,"A0","vm(1)","S-1"), node(D0,"A0","HERTZ"));
+nil
+pnlAddCurve(1, node(D0,"A0","vm(2)","S-1"), node(D0,"A0","HERTZ"));
+nil
+pnlAddCurve(1, node(D0,"A0","vm(3)","S-1"), node(D0,"A0","HERTZ"));
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlDelCurve(1, node(D0,"A0","vm(1)","S-1"), node(D0,"A0","HERTZ"));
+nil
+pnlDelCurve(1, node(D0,"A0","vm(2)","S-1"), node(D0,"A0","HERTZ"));
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+pnlUnselectPane(1, 0);
+nil
+pnlSelectPane(1);
+nil
+quit();
+exit
+pnlDeletePane(1, 1);
+nil
+nil
