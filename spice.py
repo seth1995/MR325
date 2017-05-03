@@ -22,18 +22,18 @@ class NetlistParseError(Exception):
     """Netlist parsing exception."""
     pass
 
+
 def parse(netlist):
     var = Var()
 
     var.string2file(netlist)
     var.analysis_text()
-    ##for Martix and dict
+    # for Martix and dict
     var.initMartix()
-
 
     var.makeDict()
 
-    var.initStamp()  ##stamp for the element like R
+    var.initStamp()  # stamp for the element like R
     # var.printMartix()
     # var.printGBCDUI()
     var.backMartix()
@@ -46,13 +46,23 @@ def parse(netlist):
     if var.ToSolveAC:
         var.solveAC()
 
-    #var.printMartix()
-    #var.printGBCDUI()
-    #var.printX()
+    # var.printMartix()
+    # var.printGBCDUI()
+    # var.printX()
     var.closeFile()
+    result = {}
+    if hasattr(var, 'voltage_tag'):
+        result['voltage'] = var.voltage_tag
+    if hasattr(var, 'current_tag'):
+        result['current'] = var.current_tag
+    if hasattr(var, 'phase_tag'):
+        result['phase'] = var.phase_tag
+    return result
 
-    #print var.Node_list
-    #print var.Node_list_bak
+    # print var.Node_list
+    # print var.Node_list_bak
+
+
 def main(fileName):
     start = time.clock()
     var = Var()
@@ -60,13 +70,12 @@ def main(fileName):
 
     var.output_something()
     var.analysis_text()
-    ##for Martix and dict
+    # for Martix and dict
     var.initMartix()
-
 
     var.makeDict()
 
-    var.initStamp()  ##stamp for the element like R
+    var.initStamp()  # stamp for the element like R
     # var.printMartix()
     # var.printGBCDUI()
     var.backMartix()
@@ -79,14 +88,14 @@ def main(fileName):
     if var.ToSolveAC:
         var.solveAC()
 
-    #var.printMartix()
-    #var.printGBCDUI()
-    #var.printX()
+    # var.printMartix()
+    # var.printGBCDUI()
+    # var.printX()
     var.closeFile()
-    end=time.clock()
-    print end-start
-    #print var.Node_list
-    #print var.Node_list_bak
+    end = time.clock()
+    print end - start
+    # print var.Node_list
+    # print var.Node_list_bak
 
 
 if __name__ == '__main__':
