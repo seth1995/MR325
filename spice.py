@@ -24,9 +24,6 @@ class NetlistParseError(Exception):
 
 def main(fileName):
     start = time.clock()
-    # file_name = raw_input("What's the file name:\n")
-    # while validateFile(file_name) == 0:
-    #   file_name = raw_input("Error! What's the file name:\n")
     var = Var()
     var.openFile(fileName)
 
@@ -51,14 +48,14 @@ def main(fileName):
     if var.ToSolveAC:
         var.solveAC()
 
-    var.printMartix()
-    var.printGBCDUI()
-    var.printX()
+    #var.printMartix()
+    #var.printGBCDUI()
+    #var.printX()
     var.closeFile()
     end=time.clock()
     print end-start
-    print var.Node_list
-    print var.Node_list_bak
+    #print var.Node_list
+    #print var.Node_list_bak
 
 
 if __name__ == '__main__':

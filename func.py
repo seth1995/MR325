@@ -4,6 +4,8 @@ import  matplotlib.pyplot as plt
 from mos import NMOS
 from mos import  PMOS
 import numpy as np
+from cStringIO import StringIO
+
 
 
 def str_to_num(str):
@@ -209,67 +211,43 @@ def plotV(var, t, x):
     plt.show()
 
 def plotV_AC(var, t, x):
-
-
+    io=StringIO()
+    plt.figure()
+    #voltage image
+    plt.title("Voltage")
+    plt.xlabel("frequecy(HZ)")
+    plt.ylabel("Voltage(V)")
     for ii in range(var.node_counter):
-        plt.figure()
         pltac_temp=np.divide(x[ii, :],x[0, :])
-
-
         plt.semilogx(t, list(abs(pltac_temp)),label="V%d"%var.Node_list_bak[ii])
-        #plt.plot(t, list(abs(pltac_temp)),label="V%d"%var.Node_list_bak[ii])
-        plt.title("V%d"%var.Node_list_bak[ii])
-        plt.xlabel("frequecy(HZ)")
-        plt.ylabel("Voltage(V)")
-        plt.legend()
-        """
-    for ii in range(var.node_counter):
-        plt.figure()
-        plt.semilogx(t, list((x[ii, :]).real),label="V%d"%var.Node_list_bak[ii])
-        plt.title("real V%d"%var.Node_list_bak[ii])
-        plt.xlabel("frequecy(HZ)")
-        plt.ylabel("Voltage(V)")
-        plt.legend()
-    for ii in range(var.node_counter):
-        plt.figure()
-        plt.semilogx(t, list((x[ii, :]).imag),label="V%d"%var.Node_list_bak[ii])
-        plt.title("imag V%d"%var.Node_list_bak[ii])
-        plt.xlabel("frequecy(HZ)")
-        plt.ylabel("Voltage(V)")
-        plt.legend()
-        """
+    plt.legend()
+    plt.savefig(io,format="png")
+    voltage_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
+    print voltage_tag
+    #phase image
+    plt.figure()
+    plt.title("Phase")
+    plt.xlabel("frequecy(HZ)")
+    plt.ylabel("Phase(degs)")
 
     for ii in range(var.node_counter):
-        plt.figure()
         pltac_temp=np.divide(x[ii, :],x[0, :])
-        #x_temp=np.divide(pltac_temp.imag,pltac_temp.real)
         x_temp=np.arctan2(pltac_temp.imag,pltac_temp.real)
         x_temp=np.divide(x_temp,math.pi/180)
-        #x_temp*=180
         plt.semilogx(t, list(x_temp),label="V%d"%var.Node_list_bak[ii])
-        #plt.plot(t, list(x_temp),label="V%d"%var.Node_list_bak[ii])
-        plt.title("V%d"%var.Node_list_bak[ii])
-        plt.xlabel("frequecy(HZ)")
-        plt.ylabel("Phase(degs)")
-        plt.legend()
+    plt.legend()
+    plt.savefig(io,format="png")
+    phase_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
 
-
-
-    #plt.title("Test ")
-    #plt.xlabel("time(s)")
-    #plt.ylabel("Voltage(V)")
-    #plt.legend()
-
-    plt.savefig("vol.jpg")
-
-    plt.show()
-
-    for ii in range(var.exI_counter):
-
-        plt.semilogx(t, list(x[ii+var.node_counter, :]), '*', label=('I%s' % ii))
-    plt.title("Test ")
+    #current image
+    plt.figure()
+    plt.title("Current")
     plt.xlabel("frequecy(HZ)")
     plt.ylabel("Current(A)")
+    for ii in range(var.exI_counter):
+        plt.semilogx(t, list(x[ii+var.node_counter, :]),  label=('I%s' % ii))
+    plt.legend()
 
-    plt.savefig("cur.jpg")
-    plt.show()
+    #plt.savefig("cur.jpg")
+    plt.savefig(io,format="png")
+    current_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
