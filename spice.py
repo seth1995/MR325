@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import string
 import math
 import time
+import cStringIO
 from var import Var
 
 
@@ -21,7 +22,37 @@ class NetlistParseError(Exception):
     """Netlist parsing exception."""
     pass
 
+def parse(netlist):
+    var = Var()
 
+    var.string2file(netlist)
+    var.analysis_text()
+    ##for Martix and dict
+    var.initMartix()
+
+
+    var.makeDict()
+
+    var.initStamp()  ##stamp for the element like R
+    # var.printMartix()
+    # var.printGBCDUI()
+    var.backMartix()
+
+    if var.ToSolveDC:
+        var.solveDC(plotFlag=1)
+    if var.ToSolveTran:
+        var.solveTran()
+
+    if var.ToSolveAC:
+        var.solveAC()
+
+    #var.printMartix()
+    #var.printGBCDUI()
+    #var.printX()
+    var.closeFile()
+
+    #print var.Node_list
+    #print var.Node_list_bak
 def main(fileName):
     start = time.clock()
     var = Var()

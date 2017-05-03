@@ -8,6 +8,7 @@ from func import  parse_line
 from func import  plotV
 from func import  plotV_AC
 import sys
+import cStringIO
 class Var:
     def __init__(self):
         ##set and list
@@ -63,9 +64,9 @@ class Var:
         self.MOS_abError=1e-6
 
         self.controlFlag=0
-        
 
-        
+
+
     def openFile(self,fileName):
         self.file_name=fileName
         """
@@ -79,10 +80,16 @@ class Var:
             print 'Loading %s...\n' % self.file_name
             """
         self.f = open(self.file_name)
+    def string2file(self,netlist):
+        self.f = cStringIO.StringIO()
+        self.f.write(netlist)
+
 
     def closeFile(self):
-        self.fo.close()
-        self.f.close()
+        if hasattr(self,'fo'):
+            self.fo.close()
+        if hasattr(self,'f'):
+            self.f.close()
         print 'Parsing succeed'
 
 
@@ -91,11 +98,12 @@ class Var:
         output_name = self.file_name.strip().split(".")
         self.fo = open("%s_output.txt"%self.file_name, "wb")
         double_print("****** HW6@MR325 2015-2016  (March 27 2016)  ******", self.fo)
-        
+
 
     def analysis_text(self):
-
+        self.f.seek(0)
         for line in self.f.readlines():
+            print line
             line = line.strip()
             parse_line(line,self)
             self.counter += 1
@@ -228,7 +236,7 @@ class Var:
                 MOS.getVds(self)
 
 
-        
+
     def iterator_DIODE(self):
         D_counter=0
         D_flag=1
@@ -266,7 +274,7 @@ class Var:
     def solveDC(self,plotFlag):
         dc_list = [0]
         self.omega=0
-        
+
 
         if not self.DC_h==0:
             step=int((self.DC_Max-self.DC_Min)/self.DC_h)
@@ -274,7 +282,7 @@ class Var:
                 step+=1
         else:
             step=0
-        
+
         if not self.DC_target=="NONE":
             for CL in self.CL_set:
             #CL.tranInit(self)
@@ -289,7 +297,7 @@ class Var:
             x_dc = np.zeros((self.node_counter + self.exI_counter, 1))
             self.x = np.zeros((self.node_counter + self.exI_counter, 1))
 
-            
+
             for i in range(step+1):
                 self.restoreMartix()
                 self.DC_Ele.value=self.DC_Min+i*self.DC_h
@@ -313,8 +321,8 @@ class Var:
                 self.iterator_MOS()
             else:
                 self.solveMartix()
-            
-          
+
+
 
 
 
@@ -349,10 +357,10 @@ class Var:
             self.D= copy.deepcopy(self.D_tran)
             for CL in self.CL_set:
                 CL.tranStamp(self)
-            
+
             t_now=t_now+self.tranH
             t_list.append(t_now)
-            
+
             #restore G,U,I
            # self.G=copy.deepcopy(self.G_tran)
             ## RESTORE U I for CL
@@ -393,7 +401,7 @@ class Var:
         plotV(self,t_list,x_tran)
 
     def solveAC(self):
-        
+
         self.ac_set=[]
 
 
@@ -405,18 +413,18 @@ class Var:
             while ac_temp<self.acMax:
                 ac_temp*=step
                 self.ac_set.append(ac_temp)
-                
+
         ac_num=len(self.ac_set)
         if not len(self.MOS_set)==0:
             self.solveDC(plotFlag=0)
-            
+
         self.backMartix()
-        
+
         for i in range(ac_num):
             self.restoreMartix()
             self.omega=self.ac_set[i]*math.pi*2   #note 2pi!
-            
-            
+
+
             for CL in self.CL_set:
                 CL.Stamp(self)
             if not len(self.sin_set)==0:
@@ -430,39 +438,3 @@ class Var:
                 x_ac=np.column_stack((x_ac,self.x))
 
         plotV_AC(self,self.ac_set,x_ac)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

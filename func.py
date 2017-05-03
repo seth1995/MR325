@@ -56,9 +56,9 @@ def parse_line(line, var):
     num = len(word_set)
     var.End = 0
     PlusFlag = 0
-    fo = var.fo
+    #
     if var.counter == 1:
-        double_print("First line:%s\n" % line, fo)  ##the first line?
+        #double_print("First line:%s\n" % line, fo)  ##the first line?
         b1stline = 1
         return
     else:
@@ -75,8 +75,9 @@ def parse_line(line, var):
         return
 
     elif re.match("^[$!@#%^&()_-]", Type) != None:
-        double_print('Illegal line#%d' % var.counter, fo)
-        double_print2('\n', fo)
+        #double_print('Illegal line#%d' % var.counter, fo)
+        #double_print2('\n', fo)
+        pass
 
 
     elif Type == "+":
@@ -180,35 +181,32 @@ def parse_line(line, var):
 
 
 def plotV(var, t, x):
+    io=StringIO()
+    plt.figure()
+    plt.title("Voltage")
+    plt.xlabel("time(s)")
+    plt.ylabel("Voltage(V)")
 
     for ii in range(var.node_counter):
-        plt.figure()
         plt.plot(t, list(x[ii, :]),label="V%d"%var.Node_list_bak[ii])
-        plt.title("V%d"%var.Node_list_bak[ii])
-        plt.xlabel("time(s)")
-        plt.ylabel("Voltage(V)")
-        plt.legend()
+    plt.legend()
+    plt.savefig(io,format="png")
+    voltage_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
+    io.close()
 
-
-
-    #plt.title("Test ")
-    #plt.xlabel("time(s)")
-    #plt.ylabel("Voltage(V)")
-    #plt.legend()
-
-    plt.savefig("vol.jpg")
-
-    plt.show()
-
-    for ii in range(var.exI_counter):
-
-        plt.plot(t, list(x[ii+var.node_counter, :]), '*', label=('I%s' % ii))
+    io=StringIO()
+    plt.figure()
     plt.title("Test ")
     plt.xlabel("time(s)")
     plt.ylabel("Current(A)")
+    for ii in range(var.exI_counter):
+        plt.plot(t, list(x[ii+var.node_counter, :]), '*', label=('I%s' % ii))
+    plt.legend()
+    plt.savefig(io,format="png")
+    current_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
+    io.close()
 
-    plt.savefig("cur.jpg")
-    plt.show()
+
 
 def plotV_AC(var, t, x):
     io=StringIO()
@@ -223,8 +221,10 @@ def plotV_AC(var, t, x):
     plt.legend()
     plt.savefig(io,format="png")
     voltage_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
-    print voltage_tag
+    io.close()
+    #print voltage_tag
     #phase image
+    io=StringIO()
     plt.figure()
     plt.title("Phase")
     plt.xlabel("frequecy(HZ)")
@@ -238,8 +238,10 @@ def plotV_AC(var, t, x):
     plt.legend()
     plt.savefig(io,format="png")
     phase_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
+    io.close()
 
     #current image
+    io=StringIO()
     plt.figure()
     plt.title("Current")
     plt.xlabel("frequecy(HZ)")
@@ -251,3 +253,4 @@ def plotV_AC(var, t, x):
     #plt.savefig("cur.jpg")
     plt.savefig(io,format="png")
     current_tag='<img src="data:image/png;base64,%s"/>'% io.getvalue().encode("base64").strip()
+    io.close()
