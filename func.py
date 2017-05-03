@@ -194,7 +194,7 @@ def plotV(var, t, x):
 
     io = StringIO()
     plt.figure()
-    plt.title("Test ")
+    plt.title("Current")
     plt.xlabel("time(s)")
     plt.ylabel("Current(A)")
     for ii in range(var.exI_counter):
