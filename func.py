@@ -198,7 +198,7 @@ def plotV(var, t, x):
     plt.xlabel("time(s)")
     plt.ylabel("Current(A)")
     for ii in range(var.exI_counter):
-        plt.plot(t, list(x[ii + var.node_counter, :]), '*', label=('I%s' % ii))
+        plt.plot(t, list(x[ii + var.node_counter, :]),  label=('I%s' % ii))
     plt.legend()
     plt.savefig(io, format="png")
     var.current_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
