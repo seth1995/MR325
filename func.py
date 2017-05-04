@@ -189,7 +189,7 @@ def plotV(var, t, x):
         plt.plot(t, list(x[ii, :]), label="V%d" % var.Node_list_bak[ii])
     plt.legend()
     plt.savefig(io, format="png")
-    var.voltage_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
+    var.voltage_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
 
     io = StringIO()
@@ -201,7 +201,7 @@ def plotV(var, t, x):
         plt.plot(t, list(x[ii + var.node_counter, :]), '*', label=('I%s' % ii))
     plt.legend()
     plt.savefig(io, format="png")
-    var.current_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
+    var.current_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
 
 
@@ -222,7 +222,7 @@ def plotV_AC(var, t, x):
             var.Node_list_bak[ii])
     plt.legend()
     plt.savefig(io, format="png")
-    var.voltage_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
+    var.voltage_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
     # print voltage_tag
     # phase image
@@ -239,7 +239,7 @@ def plotV_AC(var, t, x):
         plt.semilogx(t, list(x_temp), label="V%d" % var.Node_list_bak[ii])
     plt.legend()
     plt.savefig(io, format="png")
-    var.phase_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
+    var.phase_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
 
     # current image
@@ -254,5 +254,5 @@ def plotV_AC(var, t, x):
 
     # plt.savefig("cur.jpg")
     plt.savefig(io, format="png")
-    var.current_tag = '<img src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
+    var.current_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
