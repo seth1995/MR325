@@ -265,11 +265,11 @@ def get_AC(var, t, x):
     v_result["ylabel"]="Voltage(V)"
     v_result["x"]=t
     v_result["data"]=[]
+    v_result["label"]=[]
     for ii in range(var.node_counter):
         tmp=[]
         pltac_temp = np.divide(x[ii, :], x[0, :])
-        tmp.append("V%d" %var.Node_list_bak[ii])
-        tmp.append(list(abs(pltac_temp))
-        v_result["data"].append(tmp)
+        v_result["label"].append("V%d" %var.Node_list_bak[ii])
+        v_result["data"].append(list(abs(pltac_temp))
 
     return v_result
