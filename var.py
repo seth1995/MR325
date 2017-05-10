@@ -468,4 +468,4 @@ class Var:
                 else:
                     x_ac = np.column_stack((x_ac, self.x))
 
-            return get_AC(self, self.ac_set, x_ac)
+	    get_AC(self, self.ac_set, x_ac)

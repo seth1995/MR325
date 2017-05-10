@@ -270,6 +270,6 @@ def get_AC(var, t, x):
         tmp=[]
         pltac_temp = np.divide(x[ii, :], x[0, :])
         v_result["label"].append("V%d" %var.Node_list_bak[ii])
-        v_result["data"].append(list(abs(pltac_temp))
+        v_result["data"].append(list(abs(pltac_temp)))
 
-    return v_result
+    var.v_result=v_result

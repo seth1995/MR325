@@ -117,13 +117,14 @@ def parse_new(netlist):
         var.solveTran()
 
     if var.ToSolveAC:
-        result=var.solveAC()
+        var.solveAC_new()
 
     # var.printMartix()
     # var.printGBCDUI()
     # var.printX()
     var.closeFile()
-    return result
+    print var.v_result
+    return var.v_result
 
 
 if __name__ == '__main__':
