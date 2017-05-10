@@ -432,3 +432,40 @@ class Var:
                 x_ac = np.column_stack((x_ac, self.x))
 
         plotV_AC(self, self.ac_set, x_ac)
+
+        def solveAC_new(self):
+
+            self.ac_set = []
+
+            #  establish ac_set
+            if self.acType == "DEC":
+                step = 10**(1.0 / self.acPoint)
+                ac_temp = self.acMin
+                self.ac_set.append(ac_temp)
+                while ac_temp < self.acMax:
+                    ac_temp *= step
+                    self.ac_set.append(ac_temp)
+
+            ac_num = len(self.ac_set)
+            if not len(self.MOS_set) == 0:
+                self.solveDC(plotFlag=0)
+
+            self.backMartix()
+
+            for i in range(ac_num):
+                self.restoreMartix()
+                self.omega = self.ac_set[i] * math.pi * 2  # note 2pi!
+
+                for CL in self.CL_set:
+                    CL.Stamp(self)
+                if not len(self.sin_set) == 0:
+                    for Vsin in self.sin_set:
+                        Vsin.acStamp(self)
+
+                self.solveMartix()
+                if i == 0:
+                    x_ac = copy.deepcopy(self.x)
+                else:
+                    x_ac = np.column_stack((x_ac, self.x))
+
+            return get_AC(self, self.ac_set, x_ac)

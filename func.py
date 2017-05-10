@@ -256,3 +256,20 @@ def plotV_AC(var, t, x):
     plt.savefig(io, format="png")
     var.current_tag = '<img class="img-responsive" alt="Responsive image" src="data:image/png;base64,%s"/>' % io.getvalue().encode("base64").strip()
     io.close()
+
+
+def get_AC(var, t, x):
+    v_result={}
+    v_result["title"]="Voltage"
+    v_result["xlabel"]="frequecy(HZ)"
+    v_result["ylabel"]="Voltage(V)"
+    v_result["x"]=t
+    v_result["data"]=[]
+    for ii in range(var.node_counter):
+        tmp=[]
+        pltac_temp = np.divide(x[ii, :], x[0, :])
+        tmp.append("V%d" %var.Node_list_bak[ii])
+        tmp.append(list(abs(pltac_temp))
+        v_result["data"].append(tmp)
+
+    return v_result
